@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct Impact
+{
+    public Measure measure;
+    public Pattern pattern;
+}
+
 public class ObjectImpact : MonoBehaviour
 {
-    public Vector2 location;
-    public List<(Measure, Pattern)> impact;
+    private Vector2 location;
+    public List<Impact> impacts;
 
-    public Dictionary<string, Texture2D> measureMaps;
-    
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
