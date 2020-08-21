@@ -5,9 +5,9 @@ using UnityEngine;
 public class ObjectImpact : MonoBehaviour
 {
     public Vector2 location;
-    public List<Measure, Pattern> impact;
+    public List<(Measure, Pattern)> impact;
 
-    public List<Texture2D> measureMaps;
+    public Dictionary<string, Texture2D> measureMaps;
     
     // Start is called before the first frame update
     void Start()
@@ -18,10 +18,10 @@ public class ObjectImpact : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Pattern pat;
-        float pixelwert;
-        Vector2 ort;
-        measureMaps[Measure].SetPixel(ort.x, ort.y, Color.white * pixelwert);
+        //Pattern pat;
+        //float pixelwert;
+        //Vector2 ort;
+        //measureMaps[].SetPixel(ort.x, ort.y, Color.white * pixelwert);
         
     }
 }
