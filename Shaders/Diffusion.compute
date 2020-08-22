@@ -1,0 +1,32 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+Texture2D<float4> input;
+Texture2D<float4> collider;
+RWTexture2D<float4> output;
+int width;
+int height;
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    // TODO: insert actual code here!
+    if(id.x < width - 1 && id.y < height - 1 && id.x > 0 && id.y > 0){
+        float myval = input[id.xy];
+        float add = 0.0f;
+        float multfact = 0.142f;
+        add += multfact * clamp(input[float2(id.x + 1, id.y + 1)].x - myval, -0.1f, 0.1f) * (1.0f - collider[float2(id.x + 1, id.y + 1)].w);
+        add += multfact * clamp(input[float2(id.x + 1, id.y)].x - myval, -0.1f, 0.1f) * (1.0f - collider[float2(id.x + 1, id.y)].w);
+        add += multfact * clamp(input[float2(id.x + 1, id.y - 1)].x - myval, -0.1f, 0.1f) * (1.0f - collider[float2(id.x + 1, id.y - 1)].w);
+        add += multfact * clamp(input[float2(id.x, id.y + 1)].x - myval, -0.1f, 0.1f) * (1.0f - collider[float2(id.x, id.y + 1)].w);
+        add += multfact * clamp(input[float2(id.x, id.y - 1)].x - myval, -0.1f, 0.1f) * (1.0f - collider[float2(id.x, id.y - 1)].w);
+        add += multfact * clamp(input[float2(id.x - 1, id.y + 1)].x - myval, -0.1f, 0.1f) * (1.0f - collider[float2(id.x - 1, id.y + 1)].w);
+        add += multfact * clamp(input[float2(id.x - 1, id.y)].x - myval, -0.1f, 0.1f) * (1.0f - collider[float2(id.x - 1, id.y)].w);
+        add += multfact * clamp(input[float2(id.x - 1, id.y - 1)].x - myval, -0.1f, 0.1f) * (1.0f - collider[float2(id.x - 1, id.y - 1)].w);
+
+        output[id.xy] = float4(clamp(1.01f * (myval + add),0,1), 0, 0, 1);//float4((float)id.x/width, (float)id.y/height, 0, 1);
+    }
+    //output[id.xy] = float4(1,1,1,1);
+}

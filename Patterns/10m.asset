@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 10m
   m_EditorClassIdentifier: Assembly-CSharp::PointPattern
-  radius: 0
+  radius: 10

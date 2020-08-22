@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b022fc303a91445bb03a8e97824bdfcb, type: 3}
-  m_Name: AirPollution
-  m_EditorClassIdentifier: 
-  name: AirPollution
+  m_Script: {fileID: 0}
+  m_Name: NoiseLevel
+  m_EditorClassIdentifier: Assembly-CSharp::FilteredMeasure
+  name: 
+  filter: {fileID: 0}
